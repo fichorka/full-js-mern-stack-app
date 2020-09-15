@@ -1,5 +1,7 @@
 import dotenv from 'dotenv'
-dotenv.config() // load environment variables from '.env' file into process.env
+dotenv.config({
+    path: './src/backend/.env'
+}) // load environment variables from '.env' file into process.env
 import express from 'express'
 import session from 'express-session'
 import { APP_PORT } from './config'
