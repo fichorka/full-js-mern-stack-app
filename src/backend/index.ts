@@ -7,12 +7,12 @@ import { SESSION_OPTIONS } from './config/session'
 
 const app = express()
 
-app.use(
-    session(SESSION_OPTIONS)
-)
+app.use(session(SESSION_OPTIONS))
 
 app.get('/', (req, res) => {
     res.send('Hello')
 })
 
-app.listen(APP_PORT, () => {console.log(`Server is listening on: http://localhost:${APP_PORT}`)})
+app.listen(APP_PORT, () => {
+    console.log(`Server is listening on: http://localhost:${APP_PORT}`)
+})
