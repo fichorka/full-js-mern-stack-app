@@ -1,6 +1,6 @@
 # JS fullstack app
 
-_A fullstack javascript app being built. Features a **MERN** stack and conforms to a "**CLEAN**" architecture -_ **_(Work in progress)_**
+_A fullstack javascript app being built in **MERN** stack and conforming to a **Clean** architecture -_ **_(Work in progress)_**
 
 **Tech stack**
 
