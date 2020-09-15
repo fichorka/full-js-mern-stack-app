@@ -4,11 +4,9 @@ dotenv.config({
 }) // load environment variables from '.env' file into process.env
 import express from 'express'
 import session from 'express-session'
-import { APP_PORT } from './config'
-import { SESSION_OPTIONS } from './config/session'
+import { APP_PORT, SESSION_OPTIONS, CACHE_OPTIONS } from './config'
 import redis from 'redis'
 import connectRedis from 'connect-redis'
-import { CACHE_OPTIONS } from './config/cache'
 
 const CacheStore = connectRedis(session)
 const cacheClient = redis.createClient(CACHE_OPTIONS)
