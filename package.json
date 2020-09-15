@@ -1,0 +1,27 @@
+{
+  "name": "js-stack-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fichorka/js-fullstack-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fichorka/js-fullstack-app/issues"
+  },
+  "homepage": "https://github.com/fichorka/js-fullstack-app#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.1.1",
+    "@typescript-eslint/parser": "^4.1.1",
+    "eslint": "^7.9.0",
+    "eslint-plugin-react": "^7.20.6",
+    "typescript": "^4.0.2"
+  }
+}
