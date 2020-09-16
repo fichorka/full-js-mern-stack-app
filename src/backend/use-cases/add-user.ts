@@ -1,5 +1,6 @@
+import { User } from '../entities/types'
 import makeUser from '../entities/user'
-import { User } from '../entities/user/user'
+import { UsersDb } from './types'
 
 export default function makeAddUser({ usersDb }: Props) {
     return async function addUser(userInfo: User) {
@@ -10,4 +11,8 @@ export default function makeAddUser({ usersDb }: Props) {
         }
         usersDb.insertOne(user)
     }
+}
+
+interface Props {
+    usersDb: UsersDb
 }
