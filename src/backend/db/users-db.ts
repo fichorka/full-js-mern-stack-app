@@ -21,7 +21,7 @@ export default function makeUsersDb({ makeDb, parseId }: Props): UsersDb {
 
     async function findAll(): Promise<User[]> {
         const db = await makeDb()
-        return await db.collection('users').find()
+        return await db.collection('users').find().toArray()
     }
 
     async function insertOne(user: User) {
