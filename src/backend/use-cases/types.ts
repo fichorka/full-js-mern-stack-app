@@ -3,4 +3,5 @@ export interface UsersDb {
     findOneById: CallableFunction
     findOneByUsername: CallableFunction
     insertOne: CallableFunction
+    deleteOne: CallableFunction
 }

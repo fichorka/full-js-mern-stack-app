@@ -6,7 +6,8 @@ export default function makeUsersDb({ makeDb, parseId }: Props): UsersDb {
         findAll,
         findOneById,
         findOneByUsername,
-        insertOne
+        insertOne,
+        deleteOne
     }
 
     async function findOneById(id: string): Promise<User> {
@@ -27,6 +28,11 @@ export default function makeUsersDb({ makeDb, parseId }: Props): UsersDb {
     async function insertOne(user: User) {
         const db = await makeDb()
         return await db.collection('users').insertOne(user)
+    }
+
+    async function deleteOne(username: string) {
+        const db = await makeDb()
+        return await db.collection('users').deleteOne({ username })
     }
 }
 
