@@ -14,7 +14,4 @@ export async function makeDb(): Promise<Db> {
     return client.db(dbName)
 }
 
-export const usersDb = makeUsersDb({
-    makeDb,
-    parseId: (id: string) => new mongodb.ObjectID(id)
-})
+export const usersDb = makeUsersDb({ makeDb })

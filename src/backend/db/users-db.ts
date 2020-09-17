@@ -1,7 +1,8 @@
+import { ObjectID } from 'mongodb'
 import { User } from '../entities/types'
 import { MakeDb, UsersDb } from './types'
 
-export default function makeUsersDb({ makeDb, parseId }: Props): UsersDb {
+export default function makeUsersDb({ makeDb }: Props): UsersDb {
     return {
         findAll,
         findOneById,
@@ -11,9 +12,9 @@ export default function makeUsersDb({ makeDb, parseId }: Props): UsersDb {
         updateOne
     }
 
-    async function findOneById(id: string) {
+    async function findOneById(id: ObjectID) {
         const db = await makeDb()
-        return await db.collection('users').findOne({ _id: parseId(id) })
+        return await db.collection('users').findOne({ _id: id })
     }
 
     async function findOneByUsername(username: string) {
@@ -47,5 +48,4 @@ export default function makeUsersDb({ makeDb, parseId }: Props): UsersDb {
 
 interface Props {
     makeDb: MakeDb
-    parseId: CallableFunction
 }
