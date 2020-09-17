@@ -5,19 +5,22 @@ import { User } from '../types'
 
 export default function buildMakeUser({ hash, time }: Props) {
     return function makeUser(userInfo: User): User {
-        const user: User = {
-            username: makeUsername(userInfo.username),
-            password: hash(makePassword(userInfo.password)),
-            role: makeRole(userInfo.role),
-            meta: {}
-        }
+        const user: User = {}
 
-        if (user.meta) {
-            if (user._id) {
-                user.meta.modifiedOn = time.now()
-            } else {
-                user.meta.createdOn = time.now()
-            }
+        user.username = makeUsername(userInfo.username)
+
+        user.password = hash(makePassword(userInfo.password))
+
+        user.role = makeRole(userInfo.role)
+
+        user.meta = {}
+
+        if (userInfo._id) {
+            // if user already exists
+            user._id = userInfo._id
+            user.meta.modifiedOn = time.now()
+        } else {
+            user.meta.createdOn = time.now()
         }
 
         return user
