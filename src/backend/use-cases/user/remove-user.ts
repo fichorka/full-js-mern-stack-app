@@ -1,12 +1,15 @@
+import { DeleteWriteOpResultObject } from 'mongodb'
 import { UsersDb } from '../types'
 
 export default function makeRemoveUser({ usersDb }: Props) {
-    return async function removeUser(username: string) {
+    return async function removeUser(
+        username: string
+    ): Promise<DeleteWriteOpResultObject> {
         const exists = await usersDb.findOneByUsername(username)
         if (!exists) {
             throw new Error('No user with such username.')
         }
-        return usersDb.deleteOne(username)
+        return await usersDb.deleteOne(username)
     }
 }
 
