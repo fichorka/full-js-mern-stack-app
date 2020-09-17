@@ -1,7 +1,5 @@
-import { Db } from 'mongodb'
 import { User } from '../entities/types'
-import { UsersDb } from '../use-cases/types'
-import { MakeDb } from './types'
+import { MakeDb, UsersDb } from './types'
 
 export default function makeUsersDb({ makeDb, parseId }: Props): UsersDb {
     return {
@@ -9,7 +7,8 @@ export default function makeUsersDb({ makeDb, parseId }: Props): UsersDb {
         findOneById,
         findOneByUsername,
         insertOne,
-        deleteOne
+        deleteOne,
+        updateOne
     }
 
     async function findOneById(id: string) {
@@ -35,6 +34,14 @@ export default function makeUsersDb({ makeDb, parseId }: Props): UsersDb {
     async function deleteOne(username: string) {
         const db = await makeDb()
         return await db.collection('users').deleteOne({ username })
+    }
+
+    async function updateOne(user: User) {
+        const db = await makeDb()
+        const result = await db
+            .collection('users')
+            .updateOne({ _id: user._id }, { $set: user })
+        return result.modifiedCount > 0 ? user : null
     }
 }
 

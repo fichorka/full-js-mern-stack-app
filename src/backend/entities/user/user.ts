@@ -9,8 +9,14 @@ export default function buildMakeUser({ hash, time }: Props) {
             username: makeUsername(userInfo.username),
             password: hash(makePassword(userInfo.password)),
             role: makeRole(userInfo.role),
-            meta: {
-                createdOn: time.now()
+            meta: {}
+        }
+
+        if (user.meta) {
+            if (user._id) {
+                user.meta.modifiedOn = time.now()
+            } else {
+                user.meta.createdOn = time.now()
             }
         }
 

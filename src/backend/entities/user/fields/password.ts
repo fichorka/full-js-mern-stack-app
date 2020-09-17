@@ -1,6 +1,6 @@
 import { PASSWORD_MIN_LEN, PASSWORD_MAX_LEN } from './validationRules'
 
-export default function makePassword(password: string): string {
+export default function makePassword(password: string | undefined): string {
     if (!password) {
         throw new Error('Password is required.')
     }

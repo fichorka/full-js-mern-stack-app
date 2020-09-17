@@ -1,6 +1,6 @@
 import { USERNAME_MIN_LEN, USERNAME_MAX_LEN } from './validationRules'
 
-export default function makeUsername(username: string): string {
+export default function makeUsername(username: string | undefined): string {
     if (!username) {
         throw new Error('Username is required.')
     }
