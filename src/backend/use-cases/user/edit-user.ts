@@ -2,8 +2,8 @@ import { UsersDb } from '../../db/types'
 import { User } from '../../entities/types'
 import makeUser from '../../entities/user'
 
-export default function makeEditUser({ usersDb }: Props) {
-    return async function editUser({
+export default function makeEditUser({ usersDb }: Props): EditUser {
+    const editUser = async function ({
         username,
         ...changes
     }: User): Promise<User | null> {
@@ -31,8 +31,12 @@ export default function makeEditUser({ usersDb }: Props) {
 
         return await usersDb.updateOne(user)
     }
+
+    return editUser
 }
 
 interface Props {
     usersDb: UsersDb
 }
+
+export type EditUser = (user: User) => Promise<User | null>
