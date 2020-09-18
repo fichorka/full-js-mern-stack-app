@@ -5,7 +5,8 @@ export interface HttpResponse {
     statusCode: number
     body?: {
         meta?: {
-            [key: string]: string
+            status?: 'success' | 'fail' | 'error'
+            message?: string
         }
         result?: any
     }

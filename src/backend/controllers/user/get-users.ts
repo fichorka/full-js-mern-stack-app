@@ -25,11 +25,13 @@ export default function makeGetUsers({ listUsers }: MakeProps): GetUser {
                 },
                 statusCode: 400,
                 body: {
-                    status: 'fail'
+                    status: 'fail',
+                    message: err.message
                 }
             }
         }
     }
+
     return getUsers
 }
 

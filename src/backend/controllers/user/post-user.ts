@@ -25,10 +25,16 @@ export default function makePostUser({ addUser }: MakeProps): PostUser {
                     'Content-Type': 'application/json'
                 },
                 statusCode: 400,
-                body: {}
+                body: {
+                    meta: {
+                        status: 'fail',
+                        message: err.message
+                    }
+                }
             }
         }
     }
+
     return postUser
 }
 

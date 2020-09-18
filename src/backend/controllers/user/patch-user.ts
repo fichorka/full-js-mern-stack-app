@@ -14,8 +14,9 @@ export default function makePatchUser({ editUser }: MakeProps): PatchUser {
                 statusCode: 201,
                 body: {
                     meta: {
-                        status: patched ? 'success' : 'fail'
-                    }
+                        status: 'success'
+                    },
+                    result: patched
                 }
             }
         } catch (err) {
@@ -25,7 +26,12 @@ export default function makePatchUser({ editUser }: MakeProps): PatchUser {
                     'Content-Type': 'application/json'
                 },
                 statusCode: 400,
-                body: {}
+                body: {
+                    meta: {
+                        status: 'fail',
+                        message: err.message
+                    }
+                }
             }
         }
     }

@@ -26,8 +26,10 @@ export default function makeDeleteUser({ removeUser }: MakeProps): DeleteUser {
                 },
                 statusCode: 400,
                 body: {
-                    status: 'fail',
-                    message: err.message
+                    meta: {
+                        status: 'fail',
+                        message: err.message
+                    }
                 }
             }
         }
