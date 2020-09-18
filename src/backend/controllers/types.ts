@@ -3,7 +3,7 @@ export interface HttpResponse {
         'Content-Type': string
     }
     statusCode: number
-    body: {
+    body?: {
         meta?: {
             [key: string]: string
         }
