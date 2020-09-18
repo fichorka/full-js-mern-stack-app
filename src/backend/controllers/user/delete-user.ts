@@ -4,7 +4,7 @@ import { RemoveUser } from '../../use-cases/user/remove-user'
 export default function makeDeleteUser({ removeUser }: MakeProps): Controller {
     const deleteUser: Controller = async function (httpRequest) {
         try {
-            const { username } = httpRequest.body
+            const { username } = httpRequest.params
             await removeUser({ username })
             return {
                 headers: {

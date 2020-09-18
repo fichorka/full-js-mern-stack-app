@@ -4,7 +4,8 @@ import { Controller, HttpRequest } from '../controllers/types'
 const makeExpressCallback: MakeExpressCallback = function (controller) {
     return async (req, res) => {
         const httpRequest: HttpRequest = {
-            body: req.body
+            body: req.body,
+            params: req.params
         }
 
         const httpResponse = await controller(httpRequest)

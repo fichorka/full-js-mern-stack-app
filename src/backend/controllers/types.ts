@@ -18,4 +18,7 @@ export interface HttpResponse {
 
 export interface HttpRequest {
     body: User
+    params: {
+        username?: string
+    }
 }
