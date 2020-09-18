@@ -2,7 +2,7 @@ import { User } from '../../entities/types'
 import { EditUser } from '../../use-cases/user/edit-user'
 import { HttpResponse } from '../types'
 
-export default function makePostUser({ editUser }: MakeProps): PatchUser {
+export default function makePatchUser({ editUser }: MakeProps): PatchUser {
     const patchUser: PatchUser = async function ({ httpRequest }) {
         try {
             const { userInfo } = httpRequest.body
