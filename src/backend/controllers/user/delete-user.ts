@@ -1,8 +1,8 @@
-import { HttpResponse } from '../types'
+import { Controller } from '../types'
 import { RemoveUser } from '../../use-cases/user/remove-user'
 
-export default function makeDeleteUser({ removeUser }: MakeProps): DeleteUser {
-    const deleteUser: DeleteUser = async function ({ httpRequest }) {
+export default function makeDeleteUser({ removeUser }: MakeProps): Controller {
+    const deleteUser: Controller = async function (httpRequest) {
         try {
             const { username } = httpRequest.body
             await removeUser({ username })
@@ -40,14 +40,4 @@ export default function makeDeleteUser({ removeUser }: MakeProps): DeleteUser {
 
 interface MakeProps {
     removeUser: RemoveUser
-}
-
-type DeleteUser = ({ httpRequest }: DeleteUserProps) => Promise<HttpResponse>
-
-interface DeleteUserProps {
-    httpRequest: {
-        body: {
-            username: string
-        }
-    }
 }

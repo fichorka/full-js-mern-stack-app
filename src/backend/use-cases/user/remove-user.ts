@@ -24,5 +24,5 @@ export type RemoveUser = ({
 }: RemoveUserProps) => Promise<DeleteWriteOpResultObject>
 
 interface RemoveUserProps {
-    username: string
+    username: string | undefined
 }

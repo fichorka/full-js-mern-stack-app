@@ -1,10 +1,10 @@
 import { ListUsers } from '../../use-cases/user/list-users'
-import { HttpResponse } from '../types'
+import { Controller } from '../types'
 
-export default function makeGetUsers({ listUsers }: MakeProps): GetUser {
-    const getUsers: GetUser = async function () {
+export default function makeGetUsers({ listUsers }: MakeProps): Controller {
+    const getUsers: Controller = async function (httpRequest) {
         try {
-            const users = await listUsers()
+            const users = await listUsers(httpRequest?.body?.username)
             return {
                 headers: {
                     'Content-Type': 'application/json'
@@ -38,5 +38,3 @@ export default function makeGetUsers({ listUsers }: MakeProps): GetUser {
 interface MakeProps {
     listUsers: ListUsers
 }
-
-type GetUser = () => Promise<HttpResponse>

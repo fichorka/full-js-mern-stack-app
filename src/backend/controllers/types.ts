@@ -1,3 +1,5 @@
+import { User } from '../entities/types'
+
 export type Controller = (httpRequest: HttpRequest) => Promise<HttpResponse>
 
 export interface HttpResponse {
@@ -15,9 +17,5 @@ export interface HttpResponse {
 }
 
 export interface HttpRequest {
-    body?:
-        | {
-              [key: string]: any
-          }
-        | []
+    body: User
 }

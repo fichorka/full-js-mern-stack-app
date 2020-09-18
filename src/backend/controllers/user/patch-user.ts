@@ -1,11 +1,10 @@
-import { User } from '../../entities/types'
 import { EditUser } from '../../use-cases/user/edit-user'
-import { HttpResponse } from '../types'
+import { Controller } from '../types'
 
-export default function makePatchUser({ editUser }: MakeProps): PatchUser {
-    const patchUser: PatchUser = async function ({ httpRequest }) {
+export default function makePatchUser({ editUser }: MakeProps): Controller {
+    const patchUser: Controller = async function (httpRequest) {
         try {
-            const { userInfo } = httpRequest.body
+            const userInfo = httpRequest.body
             const patched = await editUser(userInfo)
             return {
                 headers: {
@@ -41,14 +40,4 @@ export default function makePatchUser({ editUser }: MakeProps): PatchUser {
 
 interface MakeProps {
     editUser: EditUser
-}
-
-type PatchUser = ({ httpRequest }: PatchUserProps) => Promise<HttpResponse>
-
-interface PatchUserProps {
-    httpRequest: {
-        body: {
-            userInfo: User
-        }
-    }
 }

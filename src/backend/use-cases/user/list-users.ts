@@ -2,8 +2,10 @@ import { UsersDb } from '../../db/types'
 import { User } from '../../entities/types'
 
 export default function makeListUsers({ usersDb }: MakeProps) {
-    const listUsers: ListUsers = async function () {
-        const users = await usersDb.findAll()
+    const listUsers: ListUsers = async function (username) {
+        const users = username
+            ? await usersDb.findOneByUsername(username)
+            : await usersDb.findAll()
         return users
     }
 
@@ -14,4 +16,4 @@ interface MakeProps {
     usersDb: UsersDb
 }
 
-export type ListUsers = () => Promise<User[] | []>
+export type ListUsers = (username?: string) => Promise<User[] | [] | User>

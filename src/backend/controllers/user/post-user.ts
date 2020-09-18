@@ -1,10 +1,10 @@
 import { AddUser } from '../../use-cases/user/add-user'
-import { HttpResponse } from '../types'
+import { Controller } from '../types'
 
-export default function makePostUser({ addUser }: MakeProps): PostUser {
-    const postUser: PostUser = async function ({ httpRequest }) {
+export default function makePostUser({ addUser }: MakeProps): Controller {
+    const postUser: Controller = async function (httpRequest) {
         try {
-            const { userInfo } = httpRequest.body
+            const userInfo = httpRequest.body
             const posted = await addUser({ userInfo })
             return {
                 headers: {
@@ -40,18 +40,4 @@ export default function makePostUser({ addUser }: MakeProps): PostUser {
 
 interface MakeProps {
     addUser: AddUser
-}
-
-type PostUser = ({ httpRequest }: PostUserProps) => Promise<HttpResponse>
-
-interface PostUserProps {
-    httpRequest: {
-        body: {
-            userInfo: {
-                username: string
-                password: string
-                role: string
-            }
-        }
-    }
 }
