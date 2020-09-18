@@ -1,3 +1,5 @@
+export type Controller = (httpRequest: HttpRequest) => Promise<HttpResponse>
+
 export interface HttpResponse {
     headers: {
         'Content-Type': string
@@ -10,4 +12,12 @@ export interface HttpResponse {
         }
         result?: any
     }
+}
+
+export interface HttpRequest {
+    body?:
+        | {
+              [key: string]: any
+          }
+        | []
 }
