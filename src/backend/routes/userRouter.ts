@@ -14,4 +14,4 @@ router.get('/:username', makeExpressCallback(getUsers))
 
 router.patch('/:username', makeExpressCallback(patchUser))
 
-export default router
+export { router }
