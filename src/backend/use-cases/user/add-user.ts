@@ -1,4 +1,3 @@
-import { InsertOneWriteOpResult } from 'mongodb'
 import { UsersDb } from '../../db/types'
 import { User } from '../../entities/types'
 import makeUser from '../../entities/user'
