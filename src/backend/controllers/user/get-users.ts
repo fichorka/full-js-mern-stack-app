@@ -4,7 +4,9 @@ import { Controller } from '../types'
 export default function makeGetUsers({ listUsers }: MakeProps): Controller {
     const getUsers: Controller = async function (httpRequest) {
         try {
-            const users = await listUsers(httpRequest?.params?.username)
+            const username = httpRequest?.params?.username
+            const users = await listUsers(username)
+
             return {
                 headers: {
                     'Content-Type': 'application/json'
@@ -25,8 +27,10 @@ export default function makeGetUsers({ listUsers }: MakeProps): Controller {
                 },
                 statusCode: 400,
                 body: {
-                    status: 'fail',
-                    message: err.message
+                    meta: {
+                        status: 'fail',
+                        message: err.message
+                    }
                 }
             }
         }

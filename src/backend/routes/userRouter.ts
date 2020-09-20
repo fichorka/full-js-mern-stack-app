@@ -8,7 +8,7 @@ router.get('/', makeExpressCallback(getUsers))
 
 router.post('/', makeExpressCallback(postUser))
 
-router.delete('', makeExpressCallback(deleteUser))
+router.delete('/:username', makeExpressCallback(deleteUser))
 
 router.get('/:username', makeExpressCallback(getUsers))
 

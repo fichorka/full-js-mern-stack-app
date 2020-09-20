@@ -6,6 +6,7 @@ export default function makeDeleteUser({ removeUser }: MakeProps): Controller {
         try {
             const { username } = httpRequest.params
             await removeUser({ username })
+
             return {
                 headers: {
                     'Content-Type': 'application/json'

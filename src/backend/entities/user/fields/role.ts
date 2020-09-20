@@ -1,6 +1,7 @@
+import { Role } from '../../types'
 import { ROLES } from './validationRules'
 
-export default function makeRole(role: string | undefined): string {
+export default function makeRole(role: Role | undefined): Role {
     if (!role) {
         throw new Error('Role is required.')
     }

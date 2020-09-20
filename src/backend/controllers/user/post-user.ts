@@ -6,6 +6,7 @@ export default function makePostUser({ addUser }: MakeProps): Controller {
         try {
             const userInfo = httpRequest.body
             const posted = await addUser({ userInfo })
+
             return {
                 headers: {
                     'Content-Type': 'application/json'

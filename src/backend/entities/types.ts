@@ -4,9 +4,11 @@ export interface User {
     username?: string
     newUsername?: string
     password?: string
-    role?: string
+    role?: Role
     meta?: {
         createdOn?: string
         modifiedOn?: string
     }
 }
+
+export type Role = 'customer' | 'admin'

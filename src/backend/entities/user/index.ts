@@ -8,7 +8,7 @@ async function hash(password: string) {
     return await bcrypt.hash(password, 10)
 }
 
-async function now() {
+function now() {
     return moment.utc().format().toString()
 }
 

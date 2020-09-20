@@ -4,7 +4,7 @@ import makeUser from '../../entities/user'
 
 export default function makeAddUser({ usersDb }: MakeProps): AddUser {
     const addUser: AddUser = async function ({ userInfo }) {
-        const user = makeUser(userInfo)
+        const user = await makeUser({ userInfo })
         const exists = await usersDb.findOneByUsername(user.username)
         if (exists) {
             throw new Error('Username is already taken.')

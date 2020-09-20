@@ -1,11 +1,26 @@
+import { UserChanges } from '../../routes/types'
 import { EditUser } from '../../use-cases/user/edit-user'
 import { Controller } from '../types'
 
 export default function makePatchUser({ editUser }: MakeProps): Controller {
     const patchUser: Controller = async function (httpRequest) {
         try {
-            const userInfo = httpRequest.body
-            const patched = await editUser(userInfo)
+            const changes: UserChanges = {}
+
+            if (httpRequest.body.username)
+                changes.username = httpRequest.body.username
+
+            if (httpRequest.body.password)
+                changes.password = httpRequest.body.password
+
+            if (httpRequest.body.role) changes.role = httpRequest.body.role
+
+            const currentUsername = httpRequest.params.username
+            const patched = await editUser({
+                username: currentUsername,
+                changes
+            })
+
             return {
                 headers: {
                     'Content-Type': 'application/json'

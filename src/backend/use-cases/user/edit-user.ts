@@ -1,33 +1,35 @@
 import { UsersDb } from '../../db/types'
 import { User } from '../../entities/types'
 import makeUser from '../../entities/user'
+import { UserChanges } from '../../routes/types'
 
 export default function makeEditUser({ usersDb }: Props): EditUser {
-    const editUser = async function ({
-        username,
-        ...changes
-    }: User): Promise<User | null> {
+    const editUser: EditUser = async function ({ username, changes }) {
+        const existing = await usersDb.findOneByUsername(username)
+
+        if (!existing) {
+            throw new Error('No user with such Username')
+        }
+
         if (!username) {
             throw new Error('No username.')
         }
 
-        if (!changes.role && !changes.password && !changes.newUsername) {
+        if (!changes.role && !changes.password && !changes.username) {
             throw new Error('No changes.')
         }
 
-        if (changes.newUsername) {
-            const exists = await usersDb.findOneByUsername(changes.newUsername)
+        if (changes.username) {
+            const exists = await usersDb.findOneByUsername(changes.username)
             if (exists) {
                 throw new Error('New username is already taken.')
             }
         }
 
-        const existing = await usersDb.findOneByUsername(username)
-        if (!existing) {
-            throw new Error('No user with such Username')
-        }
-
-        const user = makeUser({ ...existing, ...changes })
+        const user = await makeUser({
+            userInfo: { ...existing, ...changes },
+            isPasswordHashed: true
+        })
 
         return await usersDb.updateOne(user)
     }
@@ -39,4 +41,10 @@ interface Props {
     usersDb: UsersDb
 }
 
-export type EditUser = (user: User) => Promise<User | null>
+export type EditUser = ({
+    username,
+    changes
+}: {
+    username: string | undefined
+    changes: UserChanges
+}) => Promise<User | null>

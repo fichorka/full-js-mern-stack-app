@@ -1,4 +1,5 @@
 import { User } from '../entities/types'
+import { UserChanges } from '../routes/types'
 
 export type Controller = (httpRequest: HttpRequest) => Promise<HttpResponse>
 
@@ -18,7 +19,5 @@ export interface HttpResponse {
 
 export interface HttpRequest {
     body: User
-    params: {
-        username?: string
-    }
+    params: UserChanges
 }

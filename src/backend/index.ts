@@ -13,7 +13,7 @@ const CacheStore = connectRedis(session)
 const cacheClient = redis.createClient(CACHE_OPTIONS)
 
 const app = express()
-
+app.use(express.json())
 app.use(
     session({
         store: new CacheStore({ client: cacheClient }),

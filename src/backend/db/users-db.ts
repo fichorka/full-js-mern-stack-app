@@ -41,7 +41,7 @@ export default function makeUsersDb({ makeDb }: Props): UsersDb {
         const db = await makeDb()
         const result = await db
             .collection('users')
-            .updateOne({ _id: user._id }, { $set: user })
+            .updateOne({ _id: user._id }, { $set: { ...user } })
         return result.modifiedCount > 0 ? user : null
     }
 }
