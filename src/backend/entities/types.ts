@@ -11,4 +11,11 @@ export interface User {
     }
 }
 
+export interface Item {
+    name?: string
+    price?: number
+    description?: string
+    images?: string[]
+}
+
 export type Role = 'customer' | 'admin'
