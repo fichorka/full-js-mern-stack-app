@@ -4,7 +4,7 @@ import {
     InsertOneWriteOpResult,
     ObjectID
 } from 'mongodb'
-import { User } from '../entities/types'
+import { Item, User } from '../entities/types'
 
 export type MakeDb = () => Promise<Db>
 
@@ -15,4 +15,13 @@ export interface UsersDb {
     insertOne(user: User): Promise<InsertOneWriteOpResult<User & { _id: any }>>
     deleteOne(username: string): Promise<DeleteWriteOpResultObject>
     updateOne(user: User): Promise<User | null>
+}
+
+export interface ItemsDb {
+    findAll(): Promise<Item[] | []>
+    findOneById(id: ObjectID): Promise<Item | null>
+    findOneByName(name: string | undefined): Promise<Item | null>
+    insertOne(item: Item): Promise<InsertOneWriteOpResult<Item & { _id: any }>>
+    deleteOneByName(name: string): Promise<DeleteWriteOpResultObject>
+    updateOne(item: Item): Promise<Item | null>
 }
