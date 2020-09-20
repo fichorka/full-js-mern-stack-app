@@ -5,17 +5,10 @@ import { Controller } from '../types'
 export default function makePatchUser({ editUser }: MakeProps): Controller {
     const patchUser: Controller = async function (httpRequest) {
         try {
-            const changes: UserChanges = {}
-
-            if (httpRequest.body.username)
-                changes.username = httpRequest.body.username
-
-            if (httpRequest.body.password)
-                changes.password = httpRequest.body.password
-
-            if (httpRequest.body.role) changes.role = httpRequest.body.role
+            const changes: UserChanges = httpRequest.body
 
             const currentUsername = httpRequest.params.username
+
             const patched = await editUser({
                 username: currentUsername,
                 changes

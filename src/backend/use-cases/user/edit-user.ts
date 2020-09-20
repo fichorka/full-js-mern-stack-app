@@ -27,7 +27,7 @@ export default function makeEditUser({ usersDb }: Props): EditUser {
         }
 
         const user = await makeUser({
-            userInfo: { ...existing, ...changes },
+            userInfo: { ...existing, ...changes, meta: existing.meta },
             isPasswordHashed: true
         })
 
