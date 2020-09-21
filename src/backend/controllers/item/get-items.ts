@@ -42,7 +42,7 @@ const makeGetItems: MakeGetItems = function ({ listItems }) {
 
 export { makeGetItems }
 
-type MakeGetItems = ({ listItems }: MakeProps) => Controller
+type MakeGetItems = ({ listItems }: MakeProps) => Controller<Query>
 
 interface MakeProps {
     listItems: ListItems

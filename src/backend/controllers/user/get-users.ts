@@ -1,8 +1,11 @@
+import { User } from '../../entities'
 import { ListUsers } from '../../use-cases/user/list-users'
 import { Controller } from '../types'
 
-export default function makeGetUsers({ listUsers }: MakeProps): Controller {
-    const getUsers: Controller = async function (httpRequest) {
+export default function makeGetUsers({
+    listUsers
+}: MakeProps): Controller<User> {
+    const getUsers: Controller<User> = async function (httpRequest) {
         try {
             const username = httpRequest?.params?.username
             const users = await listUsers(username)

@@ -1,9 +1,12 @@
+import { User } from '../../entities'
 import { UserChanges } from '../../routes/types'
 import { EditUser } from '../../use-cases/user/edit-user'
 import { Controller } from '../types'
 
-export default function makePatchUser({ editUser }: MakeProps): Controller {
-    const patchUser: Controller = async function (httpRequest) {
+export default function makePatchUser({
+    editUser
+}: MakeProps): Controller<User> {
+    const patchUser: Controller<User> = async function (httpRequest) {
         try {
             const changes: UserChanges = httpRequest.body
 
