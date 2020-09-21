@@ -22,5 +22,5 @@ export interface HttpResponse {
 
 export interface HttpRequest<T> {
     body: T
-    params: UserChanges
+    params: { username?: string; name: string }
 }

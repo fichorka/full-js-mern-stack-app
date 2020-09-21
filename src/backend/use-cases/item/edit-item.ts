@@ -30,10 +30,10 @@ export { makeEditItem }
 
 type MakeEditItem = ({ itemsDb }: { itemsDb: ItemsDb }) => EditItem
 
-type EditItem = ({
+export type EditItem = ({
     name,
     changes
 }: {
-    name: string
-    changes: Item
+    name?: string
+    changes?: Item
 }) => Promise<Item>

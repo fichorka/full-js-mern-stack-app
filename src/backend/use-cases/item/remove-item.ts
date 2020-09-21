@@ -18,4 +18,4 @@ export { makeRemoveItem }
 
 type MakeRemoveItem = ({ itemsDb }: { itemsDb: ItemsDb }) => RemoveItem
 
-type RemoveItem = ({ name }: { name: string }) => Promise<Item>
+export type RemoveItem = ({ name }: { name: string }) => Promise<Item>
