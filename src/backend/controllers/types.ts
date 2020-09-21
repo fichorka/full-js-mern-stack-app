@@ -1,7 +1,3 @@
-import { Item, User } from '../entities/types'
-import { UserChanges } from '../routes/types'
-import { Query } from '../use-cases/types'
-
 export type Controller<T> = (
     httpRequest: HttpRequest<T>
 ) => Promise<HttpResponse>

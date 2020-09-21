@@ -1,9 +1,9 @@
 import { ListItems } from '../../use-cases/item'
 import { Query } from '../../use-cases/types'
-import { Controller, HttpRequest } from '../types'
+import { Controller } from '../types'
 
 const makeGetItems: MakeGetItems = function ({ listItems }) {
-    const getItems: Controller<Query> = async function (httpRequest) {
+    const getItems: GetItems = async function (httpRequest) {
         try {
             const options = httpRequest.body
             const users = await listItems(options)
@@ -42,7 +42,9 @@ const makeGetItems: MakeGetItems = function ({ listItems }) {
 
 export { makeGetItems }
 
-type MakeGetItems = ({ listItems }: MakeProps) => Controller<Query>
+type MakeGetItems = ({ listItems }: MakeProps) => GetItems
+
+type GetItems = Controller<Query>
 
 interface MakeProps {
     listItems: ListItems

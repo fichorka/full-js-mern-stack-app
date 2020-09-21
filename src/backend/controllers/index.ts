@@ -8,10 +8,12 @@ import {
     removeItem,
     removeUser
 } from '../use-cases'
-import makeDeleteUser from './user/delete-user'
-import makeGetUsers from './user/get-users'
-import makePostUser from './user/post-user'
-import makePatchUser from './user/patch-user'
+import {
+    makeDeleteUser,
+    makeGetUsers,
+    makePatchUser,
+    makePostUser
+} from './user'
 import {
     makeGetItems,
     makePostItem,

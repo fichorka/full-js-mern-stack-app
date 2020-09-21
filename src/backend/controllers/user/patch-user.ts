@@ -3,10 +3,8 @@ import { UserChanges } from '../../routes/types'
 import { EditUser } from '../../use-cases/user/edit-user'
 import { Controller } from '../types'
 
-export default function makePatchUser({
-    editUser
-}: MakeProps): Controller<User> {
-    const patchUser: Controller<User> = async function (httpRequest) {
+const makePatchUser: MakePatchUser = function ({ editUser }) {
+    const patchUser: PatchUser = async function (httpRequest) {
         try {
             const changes: UserChanges = httpRequest.body
 
@@ -48,6 +46,12 @@ export default function makePatchUser({
 
     return patchUser
 }
+
+export { makePatchUser }
+
+type MakePatchUser = ({ editUser }: MakeProps) => PatchUser
+
+type PatchUser = Controller<User>
 
 interface MakeProps {
     editUser: EditUser

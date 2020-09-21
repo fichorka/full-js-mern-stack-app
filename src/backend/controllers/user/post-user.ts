@@ -1,8 +1,9 @@
+import { User } from '../../entities'
 import { AddUser } from '../../use-cases/user/add-user'
 import { Controller } from '../types'
 
-export default function makePostUser({ addUser }: MakeProps): Controller {
-    const postUser: Controller = async function (httpRequest) {
+const makePostUser: MakePostUser = function ({ addUser }) {
+    const postUser: PostUser = async function (httpRequest) {
         try {
             const userInfo = httpRequest.body
             const posted = await addUser({ userInfo })
@@ -38,6 +39,12 @@ export default function makePostUser({ addUser }: MakeProps): Controller {
 
     return postUser
 }
+
+export { makePostUser }
+
+type MakePostUser = ({ addUser }: MakeProps) => PostUser
+
+type PostUser = Controller<User>
 
 interface MakeProps {
     addUser: AddUser

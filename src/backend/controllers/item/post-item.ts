@@ -3,7 +3,7 @@ import { AddItem } from '../../use-cases/item'
 import { Controller } from '../types'
 
 const makePostItem: MakePostItem = function ({ addItem }) {
-    const postItem: Controller = async function (httpRequest) {
+    const postItem: PostItem = async function (httpRequest) {
         try {
             const itemInfo = httpRequest.body
             const posted = await addItem({ itemInfo })
@@ -42,7 +42,9 @@ const makePostItem: MakePostItem = function ({ addItem }) {
 
 export { makePostItem }
 
-type MakePostItem = ({ addItem }: MakeProps) => Controller
+type MakePostItem = ({ addItem }: MakeProps) => PostItem
+
+type PostItem = Controller<Item>
 
 interface MakeProps {
     addItem: AddItem

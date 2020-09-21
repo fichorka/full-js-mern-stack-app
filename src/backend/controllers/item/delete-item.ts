@@ -3,7 +3,7 @@ import { Query } from '../../use-cases/types'
 import { RemoveItem } from '../../use-cases/item'
 
 const makeDeleteItem: MakeDeleteItem = function ({ removeItem }) {
-    const deleteUser: Controller<Query> = async function (httpRequest) {
+    const deleteUser: DeleteItem = async function (httpRequest) {
         try {
             const { name } = httpRequest.params
             await removeItem({ name })
@@ -42,7 +42,9 @@ const makeDeleteItem: MakeDeleteItem = function ({ removeItem }) {
 
 export { makeDeleteItem }
 
-type MakeDeleteItem = ({ removeItem }: MakeProps) => Controller<Query>
+type MakeDeleteItem = ({ removeItem }: MakeProps) => DeleteItem
+
+type DeleteItem = Controller<Query>
 
 interface MakeProps {
     removeItem: RemoveItem

@@ -1,8 +1,9 @@
 import { Controller } from '../types'
 import { RemoveUser } from '../../use-cases/user/remove-user'
+import { User } from '../../entities'
 
-export default function makeDeleteUser({ removeUser }: MakeProps): Controller {
-    const deleteUser: Controller = async function (httpRequest) {
+const makeDeleteUser: MakeDeleteUser = function ({ removeUser }) {
+    const deleteUser: DeleteUser = async function (httpRequest) {
         try {
             const { username } = httpRequest.params
             await removeUser({ username })
@@ -38,6 +39,12 @@ export default function makeDeleteUser({ removeUser }: MakeProps): Controller {
 
     return deleteUser
 }
+
+export { makeDeleteUser }
+
+type MakeDeleteUser = ({ removeUser }: MakeProps) => DeleteUser
+
+type DeleteUser = Controller<User>
 
 interface MakeProps {
     removeUser: RemoveUser
