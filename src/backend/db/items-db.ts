@@ -1,10 +1,6 @@
-import {
-    FilterQuery,
-    ObjectID,
-    ObjectQuerySelector,
-    QuerySelector
-} from 'mongodb'
+import { ObjectID } from 'mongodb'
 import { Item } from '../entities/types'
+import { Query } from '../use-cases/types'
 import { ItemsDb, MakeDb } from './types'
 
 export default function makeItemsDb({ makeDb }: Props): ItemsDb {
@@ -33,9 +29,9 @@ export default function makeItemsDb({ makeDb }: Props): ItemsDb {
         order = -1,
         sortBy = 'name',
         limit = 10
-    }) {
+    }: Query) {
         const db = await makeDb()
-        const query: Query = {}
+        const query: { name?: string } = {}
         if (name) query.name = name
 
         return await db
@@ -72,8 +68,4 @@ export default function makeItemsDb({ makeDb }: Props): ItemsDb {
 
 interface Props {
     makeDb: MakeDb
-}
-
-interface Query {
-    [key: string]: string
 }

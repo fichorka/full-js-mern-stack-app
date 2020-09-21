@@ -9,6 +9,7 @@ export interface User {
         createdOn?: string
         modifiedOn?: string
     }
+    [key: string]: any
 }
 
 export interface Item {

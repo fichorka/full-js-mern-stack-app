@@ -38,8 +38,8 @@ export type ListItems = ({
     sortBy,
     limit
 }: {
-    name: string
-    order: 1 | -1
-    sortBy: string
-    limit: number
+    name?: string
+    order?: 1 | -1
+    sortBy?: string
+    limit?: number
 }) => Promise<User | User[] | []>

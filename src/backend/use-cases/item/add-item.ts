@@ -20,4 +20,4 @@ export { makeAddItem }
 
 type MakeAddItem = ({ itemsDb }: { itemsDb: ItemsDb }) => AddItem
 
-type AddItem = ({ itemInfo }: { itemInfo: Item }) => Promise<Item>
+export type AddItem = ({ itemInfo }: { itemInfo: Item }) => Promise<Item>
