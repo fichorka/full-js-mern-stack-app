@@ -3,7 +3,7 @@ import makeEditUser from './user/edit-user'
 import makeListUsers from './user/list-users'
 import makeRemoveUser from './user/remove-user'
 import { itemsDb, usersDb } from '../db'
-import { makeAddItem, makeRemoveItem } from './item'
+import { makeAddItem, makeEditItem, makeRemoveItem } from './item'
 
 const listUsers = makeListUsers({ usersDb })
 const addUser = makeAddUser({ usersDb })
@@ -12,5 +12,14 @@ const removeUser = makeRemoveUser({ usersDb })
 
 const addItem = makeAddItem({ itemsDb })
 const removeItem = makeRemoveItem({ itemsDb })
+const editItem = makeEditItem({ itemsDb })
 
-export { listUsers, addUser, editUser, removeUser, addItem, removeItem }
+export {
+    listUsers,
+    addUser,
+    editUser,
+    removeUser,
+    addItem,
+    removeItem,
+    editItem
+}
