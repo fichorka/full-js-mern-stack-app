@@ -22,6 +22,7 @@ export interface ItemsDb {
     findOneById(id: ObjectID): Promise<Item | null>
     findOneByName(name: string | undefined): Promise<Item | null>
     insertOne(item: Item): Promise<InsertOneWriteOpResult<Item & { _id: any }>>
+    deleteOneById(id: string): Promise<DeleteWriteOpResultObject>
     deleteOneByName(name: string): Promise<DeleteWriteOpResultObject>
     updateOne(item: Item): Promise<Item | null>
 }

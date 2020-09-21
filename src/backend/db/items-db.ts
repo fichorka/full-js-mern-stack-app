@@ -8,6 +8,7 @@ export default function makeItemsDb({ makeDb }: Props): ItemsDb {
         findOneById,
         findOneByName,
         insertOne,
+        deleteOneById,
         deleteOneByName,
         updateOne
     }
@@ -30,6 +31,11 @@ export default function makeItemsDb({ makeDb }: Props): ItemsDb {
     async function insertOne(item: Item) {
         const db = await makeDb()
         return await db.collection('items').insertOne(item)
+    }
+
+    async function deleteOneById(id: string) {
+        const db = await makeDb()
+        return await db.collection('items').deleteOne({ _id: id })
     }
 
     async function deleteOneByName(name: string) {
