@@ -3,7 +3,7 @@ import { Controller, HttpRequest } from '../controllers/types'
 
 const makeExpressCallback: MakeExpressCallback = function (controller) {
     return async (req, res) => {
-        const httpRequest: HttpRequest = {
+        const httpRequest: HttpRequest<any> = {
             body: req.body,
             params: req.params
         }
@@ -16,4 +16,4 @@ const makeExpressCallback: MakeExpressCallback = function (controller) {
 
 export default makeExpressCallback
 
-type MakeExpressCallback = (controller: Controller) => RequestHandler
+type MakeExpressCallback = (controller: Controller<any>) => RequestHandler

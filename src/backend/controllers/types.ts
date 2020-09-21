@@ -18,5 +18,5 @@ export interface HttpResponse {
 
 export interface HttpRequest<T> {
     body: T
-    params: { username?: string; name: string }
+    params: { username?: string; name?: string }
 }

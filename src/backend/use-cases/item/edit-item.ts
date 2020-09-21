@@ -5,10 +5,10 @@ import { makeItem } from '../../entities/item'
 const makeEditItem: MakeEditItem = function ({ itemsDb }) {
     const editItem: EditItem = async function ({ name, changes }) {
         if (
-            !changes.name &&
-            !changes.price &&
-            !changes.description &&
-            !changes.images
+            !changes?.name &&
+            !changes?.price &&
+            !changes?.description &&
+            !changes?.images
         ) {
             throw new Error('No changes.')
         }
