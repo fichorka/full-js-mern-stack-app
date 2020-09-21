@@ -1,4 +1,9 @@
-import { ObjectID } from 'mongodb'
+import {
+    FilterQuery,
+    ObjectID,
+    ObjectQuerySelector,
+    QuerySelector
+} from 'mongodb'
 import { Item } from '../entities/types'
 import { ItemsDb, MakeDb } from './types'
 
@@ -23,9 +28,22 @@ export default function makeItemsDb({ makeDb }: Props): ItemsDb {
         return await db.collection('items').findOne({ name })
     }
 
-    async function findAll() {
+    async function findAll({
+        name = '',
+        order = -1,
+        sortBy = 'name',
+        limit = 10
+    }) {
         const db = await makeDb()
-        return await db.collection('items').find().toArray()
+        const query: Query = {}
+        if (name) query.name = name
+
+        return await db
+            .collection('items')
+            .find(query)
+            .limit(limit)
+            .sort({ [sortBy]: order })
+            .toArray()
     }
 
     async function insertOne(item: Item) {
@@ -54,4 +72,8 @@ export default function makeItemsDb({ makeDb }: Props): ItemsDb {
 
 interface Props {
     makeDb: MakeDb
+}
+
+interface Query {
+    [key: string]: string
 }

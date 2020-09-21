@@ -18,7 +18,17 @@ export interface UsersDb {
 }
 
 export interface ItemsDb {
-    findAll(): Promise<Item[] | []>
+    findAll({
+        name,
+        order,
+        sortBy,
+        limit
+    }: {
+        name?: string
+        order?: -1 | 1
+        sortBy?: string
+        limit?: number
+    }): Promise<Item[] | []>
     findOneById(id: ObjectID): Promise<Item | null>
     findOneByName(name: string | undefined): Promise<Item | null>
     insertOne(item: Item): Promise<InsertOneWriteOpResult<Item & { _id: any }>>
