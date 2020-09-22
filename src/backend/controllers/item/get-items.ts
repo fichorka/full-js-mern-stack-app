@@ -5,7 +5,10 @@ import { Controller } from '../types'
 const makeGetItems: MakeGetItems = function ({ listItems }) {
     const getItems: GetItems = async function (httpRequest) {
         try {
-            const options = httpRequest.body
+            const queryParams = httpRequest.query
+            const { name } = httpRequest.params
+            const options = name ? { name } : queryParams
+
             const users = await listItems(options)
 
             return {

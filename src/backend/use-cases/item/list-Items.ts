@@ -12,7 +12,7 @@ const makeListItems: MakeListItems = function ({ itemsDb }) {
             ? await itemsDb
                   .findOneByName(name)
                   .then((res) => (res ? [res] : []))
-            : await itemsDb.findAll({ name, order, sortBy, limit })
+            : await itemsDb.findAll({ order, sortBy, limit })
 
         if (!items.length) {
             if (name) {

@@ -20,6 +20,10 @@ export default function buildMakeItem(): MakeItem {
             item.images = makeImages(itemInfo.images)
         }
 
+        if (itemInfo._id) {
+            item._id = itemInfo._id
+        }
+
         return item
     }
 

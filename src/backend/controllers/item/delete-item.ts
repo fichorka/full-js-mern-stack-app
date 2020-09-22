@@ -6,6 +6,11 @@ const makeDeleteItem: MakeDeleteItem = function ({ removeItem }) {
     const deleteUser: DeleteItem = async function (httpRequest) {
         try {
             const { name } = httpRequest.params
+
+            if (!name) {
+                throw new Error('Name is requires.')
+            }
+
             await removeItem({ name })
 
             return {

@@ -30,6 +30,7 @@ export default function makeItemsDb({ makeDb }: Props): ItemsDb {
         sortBy = 'name',
         limit = 10
     }: Query) {
+        limit = typeof limit !== 'number' ? parseInt(limit, 10) : limit
         const db = await makeDb()
         const query: { name?: string } = {}
         if (name) query.name = name

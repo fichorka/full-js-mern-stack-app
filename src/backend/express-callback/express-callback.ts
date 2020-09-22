@@ -5,7 +5,8 @@ const makeExpressCallback: MakeExpressCallback = function (controller) {
     return async (req, res) => {
         const httpRequest: HttpRequest<any> = {
             body: req.body,
-            params: req.params
+            params: req.params,
+            query: req.query
         }
 
         const httpResponse = await controller(httpRequest)
